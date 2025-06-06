@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sabino.WorkShop.DTO.UserDto;
 import com.sabino.WorkShop.Domain.User;
 import com.sabino.WorkShop.Repository.UserRepository;
 import com.sabino.WorkShop.Service.Exception.ObjectNotFoundException;
@@ -23,4 +24,13 @@ public class UserService {
 		Optional<User> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 		}
+	
+	public User insert(User obj) {
+		return repo.insert(obj);
+		
+	}
+	
+	public User fromDTO(UserDto	 objDto) {
+		return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+	}
 }

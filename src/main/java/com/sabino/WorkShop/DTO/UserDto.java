@@ -1,14 +1,13 @@
 package com.sabino.WorkShop.DTO;
 
-import java.beans.Beans;
-import java.beans.beancontext.BeanContext;
+import java.io.Serializable;
 
-import org.springframework.context.support.BeanDefinitionDsl.BeanSupplierContext;
-import org.yaml.snakeyaml.introspector.BeanAccess;
-
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.sabino.WorkShop.Domain.User;
 
-public class UserDto {
+
+public class UserDto implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	
 	
@@ -16,6 +15,9 @@ public class UserDto {
 	private String name;
 	private String email;
 	
+	public UserDto() {}
+	
+	@JsonCreator
 	public UserDto(User obj) {
 	id = obj.getId();
 	name = obj.getName();
