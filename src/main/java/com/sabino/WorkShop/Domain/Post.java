@@ -1,14 +1,16 @@
 package com.sabino.WorkShop.Domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.sabino.WorkShop.DTO.AuthorDTO;
+import com.sabino.WorkShop.DTO.ComentDTO;
 
 @Document
 public class Post implements Serializable {
@@ -20,6 +22,9 @@ public class Post implements Serializable {
 	private Date date;
 	private String title;
 	private String body;
+	
+	List<ComentDTO> coments = new ArrayList<>();
+	
 	
 	public Post() {}
 
@@ -70,6 +75,16 @@ public class Post implements Serializable {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+	
+	
+
+	public List<ComentDTO> getComents() {
+		return coments;
+	}
+
+	public void setComents(List<ComentDTO> coments) {
+		this.coments = coments;
 	}
 
 	@Override
