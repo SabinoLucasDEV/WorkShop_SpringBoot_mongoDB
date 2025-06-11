@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sabino.WorkShop.DTO.UserDto;
+import com.sabino.WorkShop.Domain.Post;
 import com.sabino.WorkShop.Domain.User;
 import com.sabino.WorkShop.Service.UserService;
 
@@ -65,6 +66,13 @@ public class UserResource {
 		user.setId(id);
 		service.update(user);
 		return ResponseEntity.noContent().build();
+		
+		
+	}
+	@GetMapping(value = "/{id}/posts")
+	public ResponseEntity<List<Post>> findPost(@PathVariable String id) {
+		User user = service.findById(id);
+		return ResponseEntity.ok().body(user.getPosts());
 		
 		
 	}
