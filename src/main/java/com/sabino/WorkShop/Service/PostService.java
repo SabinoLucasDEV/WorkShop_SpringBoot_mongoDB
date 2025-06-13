@@ -1,5 +1,6 @@
 package com.sabino.WorkShop.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sabino.WorkShop.Domain.Post;
-import com.sabino.WorkShop.Domain.User;
 import com.sabino.WorkShop.Repository.PostRepository;
 import com.sabino.WorkShop.Service.Exception.ObjectNotFoundException;
 
@@ -28,5 +28,12 @@ public class PostService {
 	
 	public List<Post> findByTitle(String text) {
 		 return repo.searchPost(text);
+	}
+	
+	public List<Post> fullSearch(String text, Date minDate, Date maxDate) {
+		maxDate = new Date(maxDate.getTime() * 60 * 60 *1000);
+		return repo.fullSearch(text, minDate, maxDate);
+		
+		
 	}
 }
